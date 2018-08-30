@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>WebGL-Assignment3</title>
+    </head>
+    <body>
+        <canvas id="glCanvas" width="640" height="480" style="border:1px solid black"></canvas>
+    </body>
+    <script>
+        main();
+        function main() {
+            console.log('Initialising!');
+            const canvas = document.getElementById("glCanvas");
+            // Initialise the GL context
+            let gl = canvas.getContext("2d");
+            console.log(canvas);
+            console.log(gl);
+            if(gl === null) {
+                alert("Unable to initialise WebGL.");
+                return;
+            }
+            // Input points
+            let xc = 50, yc = 50, r2 = 30;
+            bresenhamCircle(xc, yc, r2, gl);
+        }
+
+        function bresenhamCircle(xc, yc, r, gl) {
+            let x = 0, y = r;
+            let d = 3 - 2 * r;
+            while(y >= x) {
+                // for each pixel we will
+                // draw all eight pixels
+                drawCircle(xc, yc, x, y, gl);
+                x++;
+
+                // check for decision parameter
+                // update d, x, y
+                if(d > 0) {
+                    y--;
+                    d =  d + 4 * (x - y) + 10;
+                }
+                else {
+                    d = d + 4 * x + 6;
+                }
+                drawCircle(xc, yc, x, y, gl);
+            }
+        }
+
+        function drawCircle(xc, yc, x, y, gl) {
+            gl.fillRect(xc+x, yc+y, 2, 2);
+            gl.fillRect(xc-x, yc+y, 2, 2);
+            gl.fillRect(xc+x, yc-y, 2, 2);
+            gl.fillRect(xc-x, yc-y, 2, 2);
+            gl.fillRect(xc+y, yc+x, 2, 2);
+            gl.fillRect(xc-y, yc+x, 2, 2);
+            gl.fillRect(xc+y, yc-x, 2, 2);
+            gl.fillRect(xc-y, yc-x, 2, 2);
+        }
+        
+    </script>
+</html>
