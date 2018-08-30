@@ -2,5 +2,6 @@
 Javascript implementations of graphics algorithms
 
 ## Algorithms
-* `Bresenham Line Algorithm` - assign1.html
-* `Bresenham Circle Algorithm` - assign2.html
+* `Bresenham Line Algorithm` - bresenham_line.html
+* `Bresenham Circle Algorithm` - bresenham_circle.html
+* `DDA Algorithm` - dda.html
